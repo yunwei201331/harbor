@@ -39,6 +39,10 @@ DOCKERFILEPATH_ADMINSERVER=$(DOCKERFILEPATH)/adminserver
 DOCKERFILENAME_ADMINSERVER=Dockerfile
 DOCKERIMAGENAME_ADMINSERVER=goharbor/harbor-adminserver
 
+DOCKERFILEPATH_PORTAL=$(DOCKERFILEPATH)/portal
+DOCKERFILENAME_PORTAL=Dockerfile
+DOCKERIMAGENAME_PORTAL=goharbor/harbor-portal
+
 DOCKERFILEPATH_UI=$(DOCKERFILEPATH)/ui
 DOCKERFILENAME_UI=Dockerfile
 DOCKERIMAGENAME_UI=goharbor/harbor-ui
@@ -104,6 +108,11 @@ _build_db:
 _build_adminiserver:		
 	@echo "building adminserver container for photon..."
 	$(DOCKERBUILD) -f $(DOCKERFILEPATH_ADMINSERVER)/$(DOCKERFILENAME_ADMINSERVER) -t $(DOCKERIMAGENAME_ADMINSERVER):$(VERSIONTAG) .
+	@echo "Done."
+
+_build_portal:
+	@echo "building portal container for photon..."
+	$(DOCKERBUILD) -f $(DOCKERFILEPATH_PORTAL)/$(DOCKERFILENAME_PORTAL) -t $(DOCKERIMAGENAME_PORTAL)
 	@echo "Done."
 
 _build_ui:	
@@ -208,6 +217,7 @@ build: _build_db _build_adminiserver _build_ui _build_jobservice _build_log _bui
 cleanimage:
 	@echo "cleaning image for photon..."
 	- $(DOCKERRMIMAGE) -f $(DOCKERIMAGENAME_ADMINSERVER):$(VERSIONTAG)
+	- $(DOCKERRMIMAGE) -f $(DOCKERIMAGENAME_PORTAL):$(VERSIONTAG)
 	- $(DOCKERRMIMAGE) -f $(DOCKERIMAGENAME_UI):$(VERSIONTAG)
 	- $(DOCKERRMIMAGE) -f $(DOCKERIMAGENAME_JOBSERVICE):$(VERSIONTAG)
 	- $(DOCKERRMIMAGE) -f $(DOCKERIMAGENAME_LOG):$(VERSIONTAG)
