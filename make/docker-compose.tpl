@@ -111,7 +111,7 @@ services:
         syslog-address: "tcp://127.0.0.1:1514"
         tag: "ui"
   portal:
-    image: goharbor/harbor-portal:__portal_version__
+    image: goharbor/harbor-portal:__version__
     container_name: harbor-portal
     restart: always
     networks:
