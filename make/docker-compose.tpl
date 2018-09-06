@@ -116,8 +116,6 @@ services:
     restart: always
     networks:
       - harbor
-    ports:
-      - 8080:80
     logging:
       driver: "syslog"
       options:
