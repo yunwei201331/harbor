@@ -112,7 +112,7 @@ _build_adminiserver:
 
 _build_portal:
 	@echo "building portal container for photon..."
-	$(DOCKERBUILD) -f $(DOCKERFILEPATH_PORTAL)/$(DOCKERFILENAME_PORTAL) -t $(DOCKERIMAGENAME_PORTAL) .
+	$(DOCKERBUILD) -f $(DOCKERFILEPATH_PORTAL)/$(DOCKERFILENAME_PORTAL) -t $(DOCKERIMAGENAME_PORTAL):$(VERSIONTAG) .
 	@echo "Done."
 
 _build_ui:	
